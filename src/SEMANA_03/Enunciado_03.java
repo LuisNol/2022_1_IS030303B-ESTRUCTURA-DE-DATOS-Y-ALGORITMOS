@@ -8,5 +8,7 @@ package SEMANA_03;
  * @author LUIS
  */
 public class Enunciado_03 {
-    
+    public static void main(String[] args) {
+        
+    }
 }
