@@ -18,7 +18,7 @@ public class Rectangulo {
         this.altura = altura;
     }
 
-    double calculArArea() {
+    double calculArea() {
 
         return base * altura;
               

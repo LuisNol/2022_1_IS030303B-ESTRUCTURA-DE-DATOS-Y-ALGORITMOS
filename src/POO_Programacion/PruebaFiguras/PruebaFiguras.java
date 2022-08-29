@@ -13,6 +13,18 @@ public class PruebaFiguras {
         TrianguloRectangulo figura4 = new TrianguloRectangulo(3,5);
         System.out.println("El area del circulo  es :  " + figura1.calcularPerimetro() );
         System.out.println("El perimetro  de  circulo : " + figura1.calularArea());
+        System.out.println("\n");
+        
+        System.out.println("El area del Rectangulo  es :  " + figura2.calcularPerimetro() );
+        System.out.println("El perimetro  del Rectangulo es   : " + figura2.calculArea());
+        System.out.println("\n");
+        
+        
+        System.out.println("El area del cuadrado  es :  " + figura3.calcularPerimetro() );
+        System.out.println("El perimetro  del cuadrado  es   : " + figura3.calcularArea());
+        System.out.println("\n...");
+        
+        
         
         
         System.out.println(" El area del triangulo   es  " +figura4.calcularArea() );
