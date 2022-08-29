@@ -21,6 +21,6 @@ package SEMANA_03;
     }
 public class Enunciado_03 {
     public static void main(String[] args) {
-        System.out.println("");
+           
     }
 }
