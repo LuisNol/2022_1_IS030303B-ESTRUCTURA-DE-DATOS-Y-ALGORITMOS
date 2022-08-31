@@ -14,9 +14,7 @@ public class Main {
     
     
     public static void main(String[] args) {
-             int opcion;
-             
-             Util  utiles[] =new  Util[10];
+           
              
     }
 }
