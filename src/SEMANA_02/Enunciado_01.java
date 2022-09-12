@@ -51,7 +51,7 @@ class  TrianguloRectangulo{
 public class Enunciado_01 {
     
     public static  int NumeroAletorioEntero(int min,int max){
-           Random rd = new Random();
+           Random rd = new  Random();
         int r = rd.nextInt((max - min) + 1) + min;
         return r; 
     }

@@ -13,16 +13,21 @@ import javax.swing.JOptionPane;
  */
 public class Enunciado_02 {
     
+      public static  int     numeroAleatorioEntero(int min,int max){
+           Random rd = new Random();
+        int r = rd.nextInt((max - min) + 1) + min;
+        return r; 
+    }
     public static void main(String[] args) {
         int aux ;
            Scanner entrada = new Scanner(System.in);
-         Random random = new Random();
+       
          int tamanio=10;
         int numeros[] = new int[tamanio];
         
         for (int i = 0; i < numeros.length; i++) {
                  System.out.print((i+1)+". Digite un numero: ");
-                  System.out.println((numeros[i]=random.nextInt(100 + 1) + 1));
+                  System.out.println(numeros[i]= numeroAleatorioEntero(0,100));
     
         }
         System.out.print("Arreglo  Original :  ");

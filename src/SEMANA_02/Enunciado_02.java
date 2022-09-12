@@ -39,7 +39,7 @@ public class Enunciado_02 {
     public static void main(String[] args) {
            Circulo p =new Circulo(NumeroAletorioEntero(1,100));
            
-           System.out.println("El radio es :  "+p.getRadio()+"\tEl valor de Pi es : "+Math.PI);
+           System.out.println("El radio es :  "+p.getRadio()+"\tEl valor de  Pi   es : "+Math.PI);
            System.out.println("El Area del  circulo es :  "+p.calularArea());
     }
     
