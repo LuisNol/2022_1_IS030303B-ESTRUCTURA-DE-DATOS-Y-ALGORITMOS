@@ -65,8 +65,10 @@ public class Enunciado_03 {
              System.out.println(" Digite los datos de Perro : "+ (i + 1) +":");
              System.out.print("Ingrese el nombre : ");
               System.out.print(( nombre=listaNombre[aletorioEntero(0,29)]));
-             System.out.print("\nIngresa el sexo : ");
+              System.out.println("\nIngresa el sexo : ");
              sexo= entrada.next();
+             
+           
               
               perros[i] = new Perro ( nombre,sexo);
         }
