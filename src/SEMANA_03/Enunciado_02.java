@@ -18,26 +18,25 @@ public class Enunciado_02 {
         int r = rd.nextInt((max - min) + 1) + min;
         return r; 
     }
-    public static void main(String[] args) {
-        int aux ;
-           Scanner entrada = new Scanner(System.in);
-       
-         int tamanio=10;
-        int numeros[] = new int[tamanio];
-        
-        for (int i = 0; i < numeros.length; i++) {
+      
+      public static void llenarVector(int vector[]){
+       for (int i = 0; i < vector.length; i++) {
                  System.out.print((i+1)+". Digite un numero: ");
-                  System.out.println(numeros[i]= numeroAleatorioEntero(0,100));
-    
+                  System.out.println(vector[i]= numeroAleatorioEntero(0,100));
         }
-        System.out.print("Arreglo  Original :  ");
-          for (int i = 0; i < numeros.length; i++) {
-              
-                System.out.print(numeros[i]+" - ");
+      
+      }
+      
+       public static void mostrarVector(int vector[]){
+            for (int i = 0; i < vector.length; i++) {
+                System.out.print(vector [i]+" - ");
         }
-          System.out.println("\n");
+
+      }
         
-        //Ordenamos con el método Burbuja
+       public static void  ordenar(int numeros[]){
+           int   aux ;
+           //Ordenamos con el método Burbuja
         for(int i=0;i<(numeros.length-1);i++){
             for(int j=0;j<(numeros.length-1);j++){
                 if(numeros[j]>numeros[j+1]){ //Número actual > Número siguiente - Cambio
@@ -47,15 +46,25 @@ public class Enunciado_02 {
                 }
             }
         }
+       }
+       
+    public static void main(String[] args) {
+        int aux ;
+           Scanner entrada = new Scanner(System.in);
+       
+         int tamanio=10;
+        int numeros[] = new int[tamanio];
+        llenarVector(numeros);
+        
+        System.out.print("\nArreglo  Original :  ");
+          mostrarVector(numeros);
+      
+          ordenar(numeros);
         
         //Por ultimo imprimimos el arreglo ordenado
         System.out.print("\nArreglo Ordenado cresiente : ");
-        for(int i=0;i<numeros.length;i++){
-            System.out.print(numeros[i]+" - ");
-        }
-        System.out.println("");
-        
-        
+        mostrarVector(numeros);
+     
         System.out.print("\nArreglo Ordenado Decresiente : ");
         for (int i = numeros.length-1; i >=0 ; i--) {
              System.out.print(numeros[i]+" - ");

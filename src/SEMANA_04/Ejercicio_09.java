@@ -48,8 +48,9 @@ class Canasta implements costante {
     float promedio;
 
     void rrellenar() {
-        Fruta p = new Fruta(listaFrutas[aletorioEntero(0, 11)], aletorioEntero(0, 11));
-        lista[cont] = p;
+     //   Fruta p = new Fruta(listaFrutas[aletorioEntero(0, 11)], aletorioEntero(0, 11));
+        lista[cont]=new Fruta(listaFrutas[aletorioEntero(0, 11)], aletorioEntero(0, 11));
+    //    lista[cont] = p;
         cont++;
     }
 

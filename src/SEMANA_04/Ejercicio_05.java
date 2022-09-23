@@ -36,7 +36,7 @@ public class Ejercicio_05 {
         for (int i = 0; i < vect.length; i++) {
                   System.out.print((i+1)+". Digite un numero: ");
                   
-                System.out.println((  vect[i]=random.nextInt(20 + 1) + 1));
+              //  System.out.println((  vect[i]=random.nextInt(20 + 1) + 1));
                   System.out.println((  vect[i]=random.nextInt(max + min) + min));
         
         }
