@@ -91,7 +91,7 @@ public static void main(String[] args) {
     //Vector<ILoadRecursoPersistente> lrp = new Vector<ILoadRecursoPersistente>();
       
     //Vehiculo mVehiculo[] = new Vehiculo[1];
-      Vector<Vehiculo> miVehiculo = new Vector<Vehiculo>();
+      Vector<Vehiculo> miVehiculo = new Vector<>();
 
        miVehiculo.add(new Vehiculo("GH4", "Ferrary", "A56")) ;
        miVehiculo.add(new VehiculoTurismo("12GB","Ferrari","A8",4));

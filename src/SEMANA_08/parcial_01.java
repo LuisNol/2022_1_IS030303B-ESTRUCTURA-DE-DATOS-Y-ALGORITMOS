@@ -14,7 +14,7 @@ package SEMANA_08;
  */
 
 
-public class parcial1{
+public class parcial_01{
         
     public static void mostrarMenor(double vector[]){
          

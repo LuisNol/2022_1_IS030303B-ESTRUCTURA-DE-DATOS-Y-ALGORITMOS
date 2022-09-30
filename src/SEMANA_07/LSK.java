@@ -62,7 +62,7 @@ class Configuracion {
     public void cargarConfiguracion() {
         lrp.add(new ConfiguracionHoraria());
         srp.add(new ConfiguracionUsuario());
-        lrp.add(new ConfiguracionSistema());
+        srp.add(new ConfiguracionSistema());
 
         for (ILoadRecursoPersistente irp : lrp) {
             irp.load();
