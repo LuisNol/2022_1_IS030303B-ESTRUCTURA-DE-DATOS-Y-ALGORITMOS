@@ -72,7 +72,7 @@ class Docente extends Persona implements    Personal{
     }
     
     public String datosAd(){
-       return "El  area del  trabajo es  "+ area1 +"\nEl codigo  del  trabajo es  "+codigo1;
+       return "El  area del  trabajador  es  "+ area1 +"\nEl codigo  del  trabajador es  "+codigo1;
     }
 }
 
@@ -111,7 +111,7 @@ public void procesar_gastos(){
      
     }
     public String datosAd(){
-        return "El  area del  trabajo es  "+ area2 +"\nEl codigo  del  trabajo es  "+codigo2;
+        return "El  area del  trabajador es  "+ area2 +"\nEl codigo  del  trabajador es  "+codigo2;
     }
     }
     
@@ -150,7 +150,7 @@ public void controlar_asistencia(){
     }
     
     public String datosAd(){
-        return "El  area del  trabajo es  "+ area3 +"\nEl codigo  del  trabajador  es  "+codigo3;
+        return "El  area del  trabajador  es  "+ area3 +"\nEl codigo  del  trabajador  es  "+codigo3;
     } 
 }
 
@@ -167,8 +167,8 @@ public class Practicar {
                                 System.out.print("Ingresa  su nombre completo:  ");   nombres = entrada.next();
                                 System.out.print("Ingrese su profecion :");     profesion=entrada.next();
                                 System.out.print("Ingrese la hora trabajda por semana : ");   horas_por_Semana= entrada.nextDouble();
-                                System.out.println("Ingresa el area del Trabajo : ");   areaT=entrada.next();
-                                System.out.println("Ingresa  el  codigo del Trabajodor : ");codigoT=entrada.next();
+                                System.out.print("Ingresa el area del Trabajo : ");   areaT=entrada.next();
+                                System.out.print("Ingresa  el  codigo del Trabajodor : ");codigoT=entrada.next();
                                 myPersona[cont1]= new Docente(dni, fechaNacimiento, apellidoPaterno, apellidoMateno, nombres, profesion, horas_por_Semana);
                                 myPersona[cont1].AreaTtabajo(areaT);
                                 myPersona[cont1].codigoTrabajo(codigoT);
@@ -185,8 +185,8 @@ public class Practicar {
                                 System.out.print("Ingresa  su nombre completo:  ");   nombres = entrada.next();
                                 System.out.print("Ingrese su Cargo :");     cargo=entrada.next();
                                 System.out.print("Ingrese la hora trabajda por semana : ");   horas_por_Semana= entrada.nextDouble();
-                                 System.out.println("Ingresa el area del Trabajo : ");   areaT2=entrada.next();
-                                System.out.println("Ingresa  el  codigo del Trabajodor : ");codigoT2=entrada.next();
+                                 System.out.print("Ingresa el area del Trabajo : ");   areaT2=entrada.next();
+                                System.out.print("Ingresa  el  codigo del Trabajodor : ");codigoT2=entrada.next();
                                 myPersona[cont2]= new Administrativo(dni, fechaNacimiento, apellidoPaterno, apellidoMateno, nombres, cargo, horas_por_Semana);
                                 myPersona[cont2].AreaTtabajo(areaT2);
                                  myPersona[cont2].codigoTrabajo(codigoT2);
@@ -204,8 +204,8 @@ public class Practicar {
                                 System.out.print("Ingresa  su nombre completo:  ");   nombres = entrada.next();
                                 System.out.print("Ingrese su Especialidad :");     especialidad=entrada.next();
                                 System.out.print("Ingrese la hora trabajda por semana : ");   horas_por_Semana= entrada.nextDouble();
-                                  System.out.println("Ingresa el area del Trabajo : ");   areaT3=entrada.next();
-                                System.out.println("Ingresa  el  codigo del Trabajodor : ");codigoT3=entrada.next();
+                                  System.out.print("Ingresa el area del Trabajo : ");   areaT3=entrada.next();
+                                System.out.print("Ingresa  el  codigo del Trabajodor : ");codigoT3=entrada.next();
                                 myPersona[cont3]= new Practicante(dni, fechaNacimiento, apellidoPaterno, apellidoMateno, nombres, especialidad, horas_por_Semana);
                                 myPersona[cont3].AreaTtabajo(areaT3);
                                 myPersona[cont3].codigoTrabajo(codigoT3);
