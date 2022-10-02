@@ -58,7 +58,7 @@ class Docente extends Persona implements    Personal{
     @Override
     public   String mostrarDatos(){
                   return  "Dni :  " + dni + "\nFecha  Nacimiento  : " + fechaNacimiento + "\nApellido  Paterno :  " + apellidoPaterno + 
-                          "\n Apellido Mateno  :  " + apellidoMateno + "\nNombres : " + nombres  +"\nProfesion  :  "+profesio +"\nHoras trabajadas po Semana  :  "+ horas_por_Semana+"\n"; 
+                    "\n Apellido Mateno  :  " + apellidoMateno + "\nNombres : " + nombres  +"\nProfesion  :  "+profesio +"\nHoras trabajadas po Semana  :  "+ horas_por_Semana; 
     }
 
     @Override
@@ -72,7 +72,7 @@ class Docente extends Persona implements    Personal{
     }
     
     public String datosAd(){
-       return "El  area del  trabajador  es  "+ area1 +"\nEl codigo  del  trabajador es  "+codigo1;
+       return "El  area del  trabajador  es  "+ area1 +"\nEl codigo  del  trabajador es  "+codigo1+"\n";
     }
 }
 
@@ -96,7 +96,7 @@ public void procesar_gastos(){
        @Override
      public   String mostrarDatos(){
                   return  "Dni :  " + dni + "\nFecha  Nacimiento  : " + fechaNacimiento + "\nApellido  Paterno :  " + apellidoPaterno + 
-                          "\n Apellido Mateno  :  " + apellidoMateno + "\n Nombres  : " + nombres  +"\nCargo  :  "+cargo +"\nHoras trabajadas po Semana  :  "+ horas_Por_Semana+"\n"; 
+                          "\nApellido Mateno  :  " + apellidoMateno + "\nNombres  : " + nombres  +"\nCargo  :  "+cargo +"\nHoras trabajadas po Semana  :  "+ horas_Por_Semana; 
     }
 
   @Override
@@ -111,7 +111,7 @@ public void procesar_gastos(){
      
     }
     public String datosAd(){
-        return "El  area del  trabajador es  "+ area2 +"\nEl codigo  del  trabajador es  "+codigo2;
+        return "El  area del  trabajador es  "+ area2 +"\nEl codigo  del  trabajador es  "+codigo2+"\n";
     }
     }
     
@@ -134,23 +134,20 @@ public void controlar_asistencia(){
       @Override
      public   String mostrarDatos(){
                   return  "Dni  :  " + dni + "\nFecha  Nacimiento  : " + fechaNacimiento + "\nApellido  Paterno :  " + apellidoPaterno + 
-                          "\n Apellido Mateno  :  " + apellidoMateno + "\n Nombres : " + nombres  +"\nEspecialidad  :  "+especialidad +"\nHoras trabajadas po Semana  :  "+ horasTranajadasSemanas+"\n"; 
+                          "\nApellido Mateno  :  " + apellidoMateno + "\nNombres : " + nombres  +"\nEspecialidad  :  "+especialidad +"\nHoras trabajadas po Semana  :  "+ horasTranajadasSemanas; 
     }
      
      @Override
     public void AreaTtabajo(String area) {
         area3= area;
-      //   return "El  area del  trabajo es  "+ area1;
     }
 
     @Override
     public void codigoTrabajo(String codigo) {
         codigo3=codigo;
-        // return"El codigo  del  trabajo es  "+codigo3;
     }
-    
     public String datosAd(){
-        return "El  area del  trabajador  es  "+ area3 +"\nEl codigo  del  trabajador  es  "+codigo3;
+        return "El  area del  trabajador  es  "+ area3 +"\nEl codigo  del  trabajador  es  "+codigo3+"\n";
     } 
 }
 
@@ -160,15 +157,18 @@ public class Practicar {
              String dni, fechaNacimiento, apellidoPaterno, apellidoMateno, nombres,profesion,areaT,codigoT;
               double horas_por_Semana;
                   System.out.println("\nDatos de Docente  " + (cont1+ 1) + ":");
+                                   entrada.nextLine();
                                 System.out.print("Ingresa el Dni : ");  dni= entrada.next();
-                                System.out.print("Ingrese su fecha de nacimiento  : ");   fechaNacimiento = entrada.next();
-                                System.out.print("Ingresa  Apellido  paterno  :  ");   apellidoPaterno= entrada.next();
-                                System.out.print("Ingrese Apellido  Materno : "); apellidoMateno=entrada.next();
-                                System.out.print("Ingresa  su nombre completo:  ");   nombres = entrada.next();
-                                System.out.print("Ingrese su profecion :");     profesion=entrada.next();
+                                System.out.print("Ingrese su fecha de nacimiento  : ");   fechaNacimiento = entrada.nextLine();
+                                entrada.nextLine();
+                                System.out.print("Ingresa  Apellido  paterno  :  ");   apellidoPaterno= entrada.nextLine();
+                                System.out.print("Ingrese Apellido  Materno : "); apellidoMateno=entrada.nextLine();
+                                System.out.print("Ingresa  su nombre completo:  ");   nombres = entrada.nextLine();
+                                System.out.print("Ingrese su profecion :");     profesion=entrada.nextLine();
                                 System.out.print("Ingrese la hora trabajda por semana : ");   horas_por_Semana= entrada.nextDouble();
-                                System.out.print("Ingresa el area del Trabajo : ");   areaT=entrada.next();
-                                System.out.print("Ingresa  el  codigo del Trabajodor : ");codigoT=entrada.next();
+                                entrada.nextLine();
+                                System.out.print("Ingresa el area del Trabajo : ");   areaT=entrada.nextLine();
+                                System.out.print("Ingresa  el  codigo del Trabajodor : ");codigoT=entrada.nextLine();
                                 myPersona[cont1]= new Docente(dni, fechaNacimiento, apellidoPaterno, apellidoMateno, nombres, profesion, horas_por_Semana);
                                 myPersona[cont1].AreaTtabajo(areaT);
                                 myPersona[cont1].codigoTrabajo(codigoT);
@@ -178,15 +178,18 @@ public class Practicar {
              String dni, fechaNacimiento, apellidoPaterno, apellidoMateno, nombres,cargo,areaT2,codigoT2;
               double horas_por_Semana;
                   System.out.println("\nDatos de Administrativo " + (cont2+ 1) + ":");
-                                System.out.print("Ingresa el Dni : ");  dni= entrada.next();
-                                System.out.print("Ingrese su fecha de nacimiento  : ");   fechaNacimiento = entrada.next();
-                                System.out.print("Ingresa  Apellido  paterno  :  ");   apellidoPaterno= entrada.next();
-                                System.out.print("Ingrese Apellido  Materno : "); apellidoMateno=entrada.next();
-                                System.out.print("Ingresa  su nombre completo:  ");   nombres = entrada.next();
-                                System.out.print("Ingrese su Cargo :");     cargo=entrada.next();
+                                entrada.nextLine();
+                                System.out.print("Ingresa el Dni : ");  dni= entrada.nextLine();
+                                System.out.print("Ingrese su fecha de nacimiento  : ");   fechaNacimiento =entrada.nextLine();
+                                entrada.nextLine();
+                                System.out.print("Ingresa  Apellido  paterno  :  ");   apellidoPaterno= entrada.nextLine();
+                                System.out.print("Ingrese Apellido  Materno : "); apellidoMateno=entrada.nextLine();
+                                System.out.print("Ingresa  su nombre completo:  ");   nombres = entrada.nextLine();
+                                System.out.print("Ingrese su Cargo :");     cargo=entrada.nextLine();
                                 System.out.print("Ingrese la hora trabajda por semana : ");   horas_por_Semana= entrada.nextDouble();
-                                 System.out.print("Ingresa el area del Trabajo : ");   areaT2=entrada.next();
-                                System.out.print("Ingresa  el  codigo del Trabajodor : ");codigoT2=entrada.next();
+                                entrada.nextLine();
+                                 System.out.print("Ingresa el area del Trabajo : ");   areaT2=entrada.nextLine();
+                                System.out.print("Ingresa  el  codigo del Trabajodor : ");codigoT2=entrada.nextLine();
                                 myPersona[cont2]= new Administrativo(dni, fechaNacimiento, apellidoPaterno, apellidoMateno, nombres, cargo, horas_por_Semana);
                                 myPersona[cont2].AreaTtabajo(areaT2);
                                  myPersona[cont2].codigoTrabajo(codigoT2);
@@ -197,15 +200,18 @@ public class Practicar {
              String dni, fechaNacimiento, apellidoPaterno, apellidoMateno, nombres,especialidad,areaT3,codigoT3;
               double horas_por_Semana;
                   System.out.println("\nDatos de Administrativo " + (cont3+ 1) + ":");
-                                System.out.print("Ingresa el Dni : ");  dni= entrada.next();
-                                System.out.print("Ingrese su fecha de nacimiento  : ");   fechaNacimiento = entrada.next();
-                                System.out.print("Ingresa  Apellido  paterno  :  ");   apellidoPaterno= entrada.next();
-                                System.out.print("Ingrese Apellido  Materno : "); apellidoMateno=entrada.next();
-                                System.out.print("Ingresa  su nombre completo:  ");   nombres = entrada.next();
-                                System.out.print("Ingrese su Especialidad :");     especialidad=entrada.next();
+                              entrada.nextLine();
+                                System.out.print("Ingresa el Dni : ");  dni=   entrada.nextLine();
+                                System.out.print("Ingrese su fecha de nacimiento  : ");   fechaNacimiento = entrada.nextLine();
+                                entrada.nextLine();
+                                System.out.print("Ingresa  Apellido  paterno  :  ");   apellidoPaterno= entrada.nextLine();
+                                System.out.print("Ingrese Apellido  Materno : "); apellidoMateno=entrada.nextLine();
+                                System.out.print("Ingresa  su nombre completo:  ");   nombres =entrada.nextLine();
+                                System.out.print("Ingrese su Especialidad :");     especialidad=entrada.nextLine();
                                 System.out.print("Ingrese la hora trabajda por semana : ");   horas_por_Semana= entrada.nextDouble();
-                                  System.out.print("Ingresa el area del Trabajo : ");   areaT3=entrada.next();
-                                System.out.print("Ingresa  el  codigo del Trabajodor : ");codigoT3=entrada.next();
+                                entrada.nextLine();
+                                System.out.print("Ingresa el area del Trabajo : ");   areaT3=entrada.nextLine();
+                                System.out.print("Ingresa  el  codigo del Trabajodor : ");codigoT3=entrada.nextLine();
                                 myPersona[cont3]= new Practicante(dni, fechaNacimiento, apellidoPaterno, apellidoMateno, nombres, especialidad, horas_por_Semana);
                                 myPersona[cont3].AreaTtabajo(areaT3);
                                 myPersona[cont3].codigoTrabajo(codigoT3);
