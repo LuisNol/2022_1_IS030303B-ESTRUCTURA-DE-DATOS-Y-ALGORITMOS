@@ -1,3 +1,4 @@
+
 package SEMANA_08;
 /**
  *
@@ -57,7 +58,8 @@ class Docente extends Persona implements    Personal{
     @Override
     public   String mostrarDatos(){
                   return  "Dni :  " + dni + "\nFecha  Nacimiento  : " + fechaNacimiento + "\nApellido  Paterno :  " + apellidoPaterno + 
-                    "\n Apellido Mateno  :  " + apellidoMateno + "\nNombres : " + nombres  +"\nProfesion  :  "+profesio +"\nHoras trabajadas po Semana  :  "+ horas_por_Semana; 
+                    "\n Apellido Mateno  :  " + apellidoMateno + "\nNombres : " + nombres  +"\nProfesion  :  "+profesio +"\nHoras trabajadas po Semana  :  "+ horas_por_Semana+
+                          "\nEl  area del  trabajador  es  "+ area1 +"\nEl codigo  del  trabajador es  "+codigo1+"\n"; 
     }
 
     @Override
@@ -70,9 +72,6 @@ class Docente extends Persona implements    Personal{
         codigo1=codigo;
     }
     
-    public String datosAd(){
-       return "El  area del  trabajador  es  "+ area1 +"\nEl codigo  del  trabajador es  "+codigo1+"\n";
-    }
 }
 
    class  Administrativo extends  Persona  implements Personal{
@@ -95,7 +94,8 @@ public void procesar_gastos(){
        @Override
      public   String mostrarDatos(){
                   return  "Dni :  " + dni + "\nFecha  Nacimiento  : " + fechaNacimiento + "\nApellido  Paterno :  " + apellidoPaterno + 
-                          "\nApellido Mateno  :  " + apellidoMateno + "\nNombres  : " + nombres  +"\nCargo  :  "+cargo +"\nHoras trabajadas po Semana  :  "+ horas_Por_Semana; 
+                          "\nApellido Mateno  :  " + apellidoMateno + "\nNombres  : " + nombres  +"\nCargo  :  "+cargo +"\nHoras trabajadas po Semana  :  "+ horas_Por_Semana+
+                            "\nEl  area del  trabajador es  "+ area2 +"\nEl codigo  del  trabajador es  "+codigo2+"\n"; 
     }
 
   @Override
@@ -109,15 +109,14 @@ public void procesar_gastos(){
         codigo2=codigo;
      
     }
-    public String datosAd(){
-        return "El  area del  trabajador es  "+ area2 +"\nEl codigo  del  trabajador es  "+codigo2+"\n";
-    }
+
     }
     
 class Practicante extends Persona implements Personal{
       private String  especialidad;
       private double  horasTranajadasSemanas;
       String area1,area3,codigo3;
+       String estado;
 
     public Practicante( String dni, String fechaNacimiento, String apellidoPaterno, String apellidoMateno, String nombres ,String especialidad, double horasTranajadasSemanas) {
         super(dni, fechaNacimiento, apellidoPaterno, apellidoMateno, nombres);
@@ -127,13 +126,17 @@ class Practicante extends Persona implements Personal{
    public void digitar_datos(){
     System.out.println("Los practicantes digitan los datos.");
 }
-public void controlar_asistencia(){
-    System.out.println("Los practicantes controlan la asistencia del personal.");
-}
+   public void controlAsistencia(String n) {
+        
+        estado = ( "y".equals(n)) ? "Asistio" : "No  Asistio";
+      //  return estado;
+    }
+
       @Override
      public   String mostrarDatos(){
                   return  "Dni  :  " + dni + "\nFecha  Nacimiento  : " + fechaNacimiento + "\nApellido  Paterno :  " + apellidoPaterno + 
-                          "\nApellido Mateno  :  " + apellidoMateno + "\nNombres : " + nombres  +"\nEspecialidad  :  "+especialidad +"\nHoras trabajadas po Semana  :  "+ horasTranajadasSemanas; 
+                          "\nApellido Mateno  :  " + apellidoMateno + "\nNombres : " + nombres  +"\nEspecialidad  :  "+especialidad +"\nHoras trabajadas po Semana  :  "+ horasTranajadasSemanas+
+                          "\nEl  area del  trabajador  es  "+ area3 +"\nEl codigo  del  trabajador  es  "+codigo3+"\nEl registo de asistencia : "+estado+"\n"; 
     }
      
      @Override
@@ -145,9 +148,7 @@ public void controlar_asistencia(){
     public void codigoTrabajo(String codigo) {
         codigo3=codigo;
     }
-    public String datosAd(){
-        return "El  area del  trabajador  es  "+ area3 +"\nEl codigo  del  trabajador  es  "+codigo3+"\n";
-    } 
+
 }
 
 public class Practicar {
@@ -172,7 +173,6 @@ public class Practicar {
                                 myPersona[cont1].AreaTtabajo(areaT);
                                 myPersona[cont1].codigoTrabajo(codigoT);
       }
-
         public static void  registrarDatosAdministrativo( Administrativo [] myPersona,int cont2){
              String dni, fechaNacimiento, apellidoPaterno, apellidoMateno, nombres,cargo,areaT2,codigoT2;
               double horas_por_Semana;
@@ -193,12 +193,11 @@ public class Practicar {
                                 myPersona[cont2].AreaTtabajo(areaT2);
                                  myPersona[cont2].codigoTrabajo(codigoT2);
       }
-        
-   
+           
     public static void  registrarDatosPracticante( Practicante [] myPersona,int cont3){
-             String dni, fechaNacimiento, apellidoPaterno, apellidoMateno, nombres,especialidad,areaT3,codigoT3;
+             String dni, fechaNacimiento, apellidoPaterno, apellidoMateno, nombres,especialidad,areaT3,codigoT3,estado;
               double horas_por_Semana;
-                  System.out.println("\nDatos de Administrativo " + (cont3+ 1) + ":");
+                  System.out.println("\nDatos de Participante " + (cont3+ 1) + ":");
                               entrada.nextLine();
                                 System.out.print("Ingresa el Dni : ");  dni=   entrada.nextLine();
                                 System.out.print("Ingrese su fecha de nacimiento  : ");   fechaNacimiento = entrada.nextLine();
@@ -211,15 +210,17 @@ public class Practicar {
                                 entrada.nextLine();
                                 System.out.print("Ingresa el area del Trabajo : ");   areaT3=entrada.nextLine();
                                 System.out.print("Ingresa  el  codigo del Trabajodor : ");codigoT3=entrada.nextLine();
+                                System.out.print("Ingreses su asistencia    y o   n  : ");  estado=entrada.nextLine();
                                 myPersona[cont3]= new Practicante(dni, fechaNacimiento, apellidoPaterno, apellidoMateno, nombres, especialidad, horas_por_Semana);
                                 myPersona[cont3].AreaTtabajo(areaT3);
                                 myPersona[cont3].codigoTrabajo(codigoT3);
+                                myPersona[cont3].controlAsistencia(estado);
       }
       public static void   mostrarDatosDocente(Docente [] myPersona,int cont1){
             for (int i = 0; i <cont1 ; i++) {
                                  System.out.println("\nMostrando datos del docente  No  " + (i + 1) + ":");
                                     System.out.println(myPersona[i].mostrarDatos());
-                                   System.out.println(myPersona[i].datosAd());
+                                
                                 }
       }
       
@@ -227,14 +228,12 @@ public class Practicar {
             for (int i = 0; i <cont2 ; i++) {
                                  System.out.println("\nMostrando datos del Administrativo No  " + (i + 1) + ":");
                                     System.out.println(myPersona[i].mostrarDatos());
-                                       System.out.println(myPersona[i].datosAd());
                                 }
       }
          public static void   mostrarDatosPracticante(Practicante [] myPersona,int cont3){
             for (int i = 0; i <cont3 ; i++) {
                                  System.out.println("\nMostrando datos del Practicante No  " + (i + 1) + ":");
                                     System.out.println(myPersona[i].mostrarDatos());
-                                       System.out.println(myPersona[i].datosAd());
                                 }
       }
       

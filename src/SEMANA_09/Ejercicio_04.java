@@ -1,7 +1,20 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 
-import java.util.LinkedList;
+package SEMANA_09;
+
 import java.util.List;
+import java.util.Vector;
 
+/**
+ *
+ * @author Nolberto Luis Sumaran Pimentel 
+*@phone 930518038
+*  @institutional_mail   nolberto.sumaran@unas.edu.pe
+*  @personal_mail  nolberto.sumaran@gmail.com
+ */
 class Perro{
     String name;
     int old;
@@ -14,14 +27,25 @@ class Perro{
     }
 }
 class Metodo{
-    List<Perro> lista=new LinkedList<Perro>();
+    List<Perro> lista=new Vector<Perro>();
+
+    Metodo() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    Metodo() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    
     void ingresar(Perro p){
         lista.add(p);
     }
     void mostrar(){
-        java.util.ListIterator<Perro> var=lista.listIterator();
-        while(var.hasNext()){
-            System.out.println(var.next().informacion());
+        int i=0;
+        for (Perro x : lista) {
+            System.out.print(i+++" ");
+            System.out.println(x.informacion());
         }
     }
     void eliminar(int p){
@@ -30,8 +54,10 @@ class Metodo{
     void modificar(int p, Perro x){
         lista.set(p, x);
     }
+
+    
 }
-public class Ejercicio_01 {
+public class Ejercicio_04 {
     public static void main(String[] args) {
         Perro p1=new Perro("A",1);
         Perro p2=new Perro("B",2);

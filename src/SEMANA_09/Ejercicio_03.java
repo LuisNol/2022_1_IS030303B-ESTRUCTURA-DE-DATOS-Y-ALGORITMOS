@@ -1,7 +1,17 @@
 
-import java.util.LinkedList;
+package SEMANA_09;
+
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
+/**
+ *
+ * @author Nolberto Luis Sumaran Pimentel 
+*@phone 930518038
+*  @institutional_mail   nolberto.sumaran@unas.edu.pe
+*  @personal_mail  nolberto.sumaran@gmail.com
+ */
 class Perro{
     String name;
     int old;
@@ -14,12 +24,12 @@ class Perro{
     }
 }
 class Metodo{
-    List<Perro> lista=new LinkedList<Perro>();
+    List<Perro> lista=new ArrayList<Perro>();
     void ingresar(Perro p){
         lista.add(p);
     }
     void mostrar(){
-        java.util.ListIterator<Perro> var=lista.listIterator();
+        Iterator<Perro>var=lista.listIterator();
         while(var.hasNext()){
             System.out.println(var.next().informacion());
         }
@@ -31,7 +41,7 @@ class Metodo{
         lista.set(p, x);
     }
 }
-public class Ejercicio_01 {
+public class Ejercicio_03 {
     public static void main(String[] args) {
         Perro p1=new Perro("A",1);
         Perro p2=new Perro("B",2);
