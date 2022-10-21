@@ -264,7 +264,7 @@ public class Enunciado_01 extends javax.swing.JFrame {
         
          this.resultado_suma1.setText(m.mostrar(vec));
         
-        
+        this.numero_elementos.setText("");
         
     }//GEN-LAST:event_generar_datosActionPerformed
 
