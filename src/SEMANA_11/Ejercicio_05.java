@@ -37,6 +37,6 @@ public class Ejercicio_05 {
     public static void main(String[] args) {
         Metodo m1 = new Metodo();
         //System.out.println("El producto de dos numeros es : "+  m1.mcd(aletorioEntero(1,20),aletorioEntero(1,20)));
-        System.out.println("mcd : "+ m1.mcd(12, 18));
+        System.out.println(m1.mcd(12, 18));
     }
 }
