@@ -2,18 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+package Semana09;
 
-package SEMANA_09;
-
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
-import java.util.Vector;
 
 /**
  *
- * @author Nolberto Luis Sumaran Pimentel 
-*@phone 930518038
-*  @institutional_mail   nolberto.sumaran@unas.edu.pe
-*  @personal_mail  nolberto.sumaran@gmail.com
+ * @author chris
  */
 class Perro{
     String name;
@@ -27,17 +24,14 @@ class Perro{
     }
 }
 class Metodo{
-    List<Perro> lista=new Vector<Perro>();
-
-
+    List<Perro> lista=new ArrayList<Perro>();
     void ingresar(Perro p){
         lista.add(p);
     }
     void mostrar(){
-        int i=0;
-        for (Perro x : lista) {
-            System.out.print(i+++" ");
-            System.out.println(x.informacion());
+        Iterator<Perro>var=lista.listIterator();
+        while(var.hasNext()){
+            System.out.println(var.next().informacion());
         }
     }
     void eliminar(int p){
@@ -46,10 +40,8 @@ class Metodo{
     void modificar(int p, Perro x){
         lista.set(p, x);
     }
-
-    
 }
-public class Ejercicio_04 {
+public class ejer03 {
     public static void main(String[] args) {
         Perro p1=new Perro("A",1);
         Perro p2=new Perro("B",2);

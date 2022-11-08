@@ -6,7 +6,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
+
+
 
 /**
  *
@@ -35,8 +38,15 @@ class Alumno{
 class Registro extends Alumno{
     
     public String estado;
-    private int n1;
-    private int n2;
+
+    public Registro() {
+        super(null);
+        this.n1 = 0;
+        this.n2 = 0;
+        this.n3 = 0;
+    }
+    private  int n1;
+    private  int n2;
     private int n3;
     
     public Registro(String name, int nota1, int nota2, int nota3) {
@@ -110,17 +120,27 @@ class metodo{
 }
 
 public class Ejercicio_07 {
-    
-    public static void Ingresar_Datos(metodo x,int n){
+         static int aletorioEntero(int min, int max) {
+        Random rd = new Random();
+        int r = rd.nextInt((max - min) + 1) + min;
+        return r;
+    }
+    public static void ingresar_Datos(metodo x,int n){
+   
+        int nota1,nota2,nota3;
         Scanner entrada = new Scanner(System.in);
         for(int i=0;i<n;i++){
             System.out.println("\nALUMNO "+(i+1));
-            System.out.println("NOMBRE: ");String name = entrada.nextLine();           
-            System.out.println("NOTA 1: ");int n1= entrada.nextInt();           
-            System.out.println("NOTA 2: ");int n2= entrada.nextInt();           
-            System.out.println("NOTA 3: ");int n3= entrada.nextInt();    
-            x.ingresar(new Registro(name,n1,n2,n3));    
+            System.out.print("Nombre : ");String name = entrada.nextLine();           
+            System.out.print(" Ingrese la nota1  : ");
+            System.out.print(nota1 = aletorioEntero(1,20));
+            System.out.print("\n Ingrese la nota2  :");
+            System.out.print(nota2 = aletorioEntero(1, 20));
+            System.out.print("\n Ingrese la nota3:  ");
+           System.out.print(nota3 = aletorioEntero(1, 20)); 
+            x.ingresar(new Registro(name,nota1,nota2,nota3));   
             entrada.nextLine();
+        
         }
     }
     
@@ -129,7 +149,7 @@ public class Ejercicio_07 {
         Scanner entrada = new Scanner(System.in);
         System.out.println("NUMERO DE ALUMNOS A INGRESAR: ");
         int n= entrada.nextInt();
-        Ingresar_Datos(met,n);
+        ingresar_Datos(met,n);
        
         met.escribir(); //ESCRIBE EN EL TXT
         met.mostrar(); //MUESTRA EN PANTALLA

@@ -34,6 +34,8 @@ class Persona{
         this.old = old;
         this.sex = sex;
     }    
+
+   
     String informacion(){
         return this.name+"\t"+this.old+"\t"+this.sex;
     }
@@ -48,11 +50,11 @@ class metodo{
         if(!arch.exists()){
             arch.createNewFile();
         }
-        PrintWriter pw=new PrintWriter(arch);
-        for(Persona p: lista){
-            pw.println(p.dato());
+        try (PrintWriter pw = new PrintWriter(arch)) {
+            for(Persona p: lista){
+                pw.println(p.dato());
+            }
         }
-        pw.close();
         
     }
     void leer()throws IOException{
@@ -88,11 +90,11 @@ class metodo{
 public class Ejercicio_06 {
     public static void main(String[] args) throws IOException{              
         metodo met=new metodo();
-        /**met.ingresar(new Persona("Alan",45,'M'));
+        met.ingresar(new Persona("Alan",45,'M'));
         met.ingresar(new Persona("Toledo",30,'M'));
-        met.ingresar(new Persona("Acuña",25,'M'));**/
-        //met.mostrar();
-        //met.escribir();
+        met.ingresar(new Persona("Acuña",25,'M'));
+        met.mostrar();
+        met.escribir();
         met.leer();
 //        met.ingresar(new Persona("Castillo",30,'M'));
 //        met.ingresar(new Persona("Keiko",1000,'M'));

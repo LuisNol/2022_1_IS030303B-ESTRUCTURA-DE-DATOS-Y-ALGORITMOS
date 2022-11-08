@@ -8,15 +8,12 @@ import javax.swing.JFrame;
 
 /**
  *
- * @author sumaran
+ * @author chris
  */
-public class Ejercicio_02 {
+public class ejer01 {
     public static void main(String[] args) {
-        JFrame pantalla = new  JFrame("Registros de alumnos ");
-        pantalla.setSize(400,400);
+        JFrame pantalla=new JFrame("Registro de alumnos:");
+        pantalla.setSize(400, 400);
         pantalla.setVisible(true);
-                
-            }
-        
-   
+    }
 }

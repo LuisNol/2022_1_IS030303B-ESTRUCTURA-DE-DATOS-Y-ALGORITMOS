@@ -1,8 +1,15 @@
 
 package SEMANA_11;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -19,7 +26,7 @@ import javax.swing.table.TableModel;
         int r = rd.nextInt((max - min) + 1) + min;
         return r;
     }
-    void rellenarV(int v[],int n){
+    void rellenarV(int v[], int n){
         for (int i = 0; i <v.length ; i++) {
             v[i]=aletorioEntero(1,20);
         }
@@ -48,20 +55,20 @@ import javax.swing.table.TableModel;
 
 class Datos {
     String tipo;
-    int tamanio;
+    String tamanio;
     long inicio,fin,resultado;
     long suma;
 
-    public Datos(int tamanio, String tipo, long inicio, long fin,long resultado,long suma) {
+    public Datos( String tamanio,String tipo, long inicio, long fin, long resultado, long suma) {
         this.tamanio = tamanio;
         this.tipo = tipo;
         this.inicio = inicio;
         this.fin = fin;
-        this.resultado=resultado ;
-        this.suma=suma;
+        this.resultado = resultado;
+        this.suma = suma;
     }
 
-    public int getTamanio() {
+    public String getTamanio() {
         return tamanio;
     }
 
@@ -85,22 +92,73 @@ class Datos {
         return suma;
     }
     
-
+public String dato() {
+        return this.tamanio + "," + this.tipo + "," + this.inicio + "," + this.fin + "," + this.resultado+","+this.suma;
     }
+    }
+class metodoTXT {
+
+    ArrayList<Datos> lista = new ArrayList<>();
+    File arch = new File("Archicvo_Resultado.txt");
+
+    public metodoTXT(ArrayList<Datos> lista) {
+        this.lista = lista;
+    }
+
+    public metodoTXT() {
+    }
+
+    void escribir() throws IOException {
+        if (!arch.exists()) {
+            arch.createNewFile();
+        }
+        try (PrintWriter pw = new PrintWriter(arch)) {
+            for (Datos p : lista) {
+                pw.println(p.dato());
+            }
+        }
+    }
+
+         void leer() throws IOException {
+        if (!arch.exists()) {
+            arch.createNewFile();
+        }
+        BufferedReader br = new BufferedReader(new FileReader(arch));
+        String cad;
+        while ((cad = br.readLine()) != null) {
+            String cad2[] = cad.split(",");
+            this.lista.add(new Datos(cad2[0].trim(), cad2[1].trim(), Long.parseLong(cad2[2]), Long.parseLong(cad2[3]), Long.parseLong(cad2[4]),Long.parseLong(cad2[5])));
+        }
+    }
+
+    void ingresar(Datos p) {
+        lista.add(p);
+    }
+
+    public ArrayList<Datos> getLista() {
+        return lista;
+    }
+}
+
 public class Enunciado_01 extends javax.swing.JFrame {
 
      ArrayList<Datos> lista;
     int vec[];
     int n=0;
+    metodoTXT mtxt;
     Metodo m=new Metodo();
     
-    public Enunciado_01() {
-        lista=new ArrayList<>(); 
+    public Enunciado_01() throws IOException {
+        
         initComponents();
+        lista=new ArrayList<>(); 
+         mtxt = new metodoTXT();
+        mtxt.leer();
+        lista = mtxt.getLista();
         llenarTabla();
         buttonGroup1.add(result_recursivo);
         buttonGroup1.add(result_iterativo);
-         // lista=new ArrayList<>(); 
+ 
     }
     
      private void llenarTabla() {
@@ -260,7 +318,7 @@ public class Enunciado_01 extends javax.swing.JFrame {
       //  int vec []=new int[n];
         this.vec=new int[n];
         this.n=n;
-        m.rellenarV(vec,n);
+        m.rellenarV(vec, n);
         
          this.resultado_suma1.setText(m.mostrar(vec));
         
@@ -272,22 +330,34 @@ public class Enunciado_01 extends javax.swing.JFrame {
      long inicio=0;
      long fin=0;
      long resultado= 0;
+    // String n1 =Integer.parseInt(n);
+      // String numCadena= String.valueOf(n);
+     
         if(result_recursivo.isSelected()){
              inicio=System.nanoTime();
             resultado= m.sumarR(vec, n-1);
             fin=System.nanoTime();
-             lista.add(new Datos(n,"Recursivo",inicio,fin,fin-inicio,resultado));
+           
+             lista.add(new Datos(n+ "","Recursivo",inicio,fin,fin-inicio,resultado));
          
         }else if(result_iterativo.isSelected()){
               inicio=System.nanoTime();
             resultado= m.sumarI(vec);
             fin=System.nanoTime();
-             lista.add(new Datos(n,"Iterativo",inicio,fin,fin-inicio,resultado));
+            
+             lista.add(new Datos(n+ "","Iterativo",inicio,fin,fin-inicio,resultado));
         }else{
                 JOptionPane.showMessageDialog(null, "No se selecciono");
                 }
-         //JOptionPane.showMessageDialog(null, ""+resultado);
-        llenarTabla();
+     
+          mtxt = new metodoTXT(lista);
+        try {
+            mtxt.escribir();
+        
+         } catch (IOException ex) {
+         }
+           llenarTabla();
+       
     }//GEN-LAST:event_realizar_opActionPerformed
 
     /**
@@ -306,24 +376,25 @@ public class Enunciado_01 extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Enunciado_01.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Enunciado_01.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Enunciado_01.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Enunciado_01.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+         //</editor-fold>
+         //</editor-fold>
+         //</editor-fold>
+         //</editor-fold>
+         
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+        java.awt.EventQueue.invokeLater(() -> {
+            try {
                 new Enunciado_01().setVisible(true);
+            } catch (IOException ex) {
+                Logger.getLogger(Enunciado_01.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
     }

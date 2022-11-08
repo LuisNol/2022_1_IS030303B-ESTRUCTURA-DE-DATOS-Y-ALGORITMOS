@@ -12,7 +12,7 @@ import java.util.Random;
  */
 
 class Metodo{
-   int producto(int x ,int y){
+   int producto(int x,int y){
        if (y==0) {
            return 0;
        }else{
@@ -23,7 +23,7 @@ class Metodo{
 
 public class Ejercicio_03 {
     
-    public static int aletorioEntero(int min, int max) {
+    public static int aletorioEntero(int min,int max) {
         Random rd = new Random();
         int r = rd.nextInt((max - min) + 1) + min;
         return r;

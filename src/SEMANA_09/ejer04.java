@@ -2,19 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
 package SEMANA_09;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
-/**
- *
- * @author Nolberto Luis Sumaran Pimentel 
-*@phone 930518038
-*  @institutional_mail   nolberto.sumaran@unas.edu.pe
-*  @personal_mail  nolberto.sumaran@gmail.com
- */
 class Perro{
     String name;
     int old;
@@ -28,8 +21,6 @@ class Perro{
 }
 class Metodo{
     List<Perro> lista=new Vector<Perro>();
-
-
     void ingresar(Perro p){
         lista.add(p);
     }
@@ -46,10 +37,13 @@ class Metodo{
     void modificar(int p, Perro x){
         lista.set(p, x);
     }
-
-    
 }
-public class Ejercicio_04 {
+
+/**
+ *
+ * @author sumaran
+ */
+public class ejer04 {
     public static void main(String[] args) {
         Perro p1=new Perro("A",1);
         Perro p2=new Perro("B",2);
