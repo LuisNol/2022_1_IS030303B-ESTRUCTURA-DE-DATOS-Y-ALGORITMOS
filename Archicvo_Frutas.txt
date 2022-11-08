@@ -1,0 +1,4 @@
+naranja,naranja,0,verte,3
+naranja,naranja,0,verte,3
+Manxana,rojo,0,maduro,3
+Manxana,rojo,0,maduro,3
