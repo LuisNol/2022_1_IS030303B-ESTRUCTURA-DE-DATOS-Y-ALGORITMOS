@@ -10,6 +10,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -24,28 +25,30 @@ import javax.swing.table.TableModel;
 class Fruta{
      private String nombre;
      private String color;
-     private Long peso;
+     private String peso;
      private String maduracion;
      private String  tamanio;
      private String tipo;
+     
 
-    public Fruta(String nombre, String color, long peso, long parseLong1, String maduracion, String tamanio, String tipo) {
+    public Fruta(String nombre,String color, String peso, String maduracion, String tamanio, String tipo) {
         this.nombre = nombre;
-        this.color = color;
+        this.color=color;
         this.peso = peso;
         this.maduracion = maduracion;
         this.tamanio = tamanio;
         this.tipo = tipo;
     }
 
+    
+
+    public String getPeso() {
+        return peso;
+    }
+
     public String getTipo() {
         return tipo;
     }
-
-    
-
-   
-
     public String getNombre() {
         return nombre;
     }
@@ -54,9 +57,7 @@ class Fruta{
         return color;
     }
 
-    public Long getPeso() {
-        return peso;
-    }
+    
 
     public String getMaduracion() {
         return maduracion;
@@ -68,7 +69,7 @@ class Fruta{
 
     
     public String datos() {
-        return this.nombre + "," + this.color + "," + this.peso + "," + this.maduracion + "," + this.tamanio ;
+        return this.nombre + "," + this.color + "," + this.peso + "," + this.maduracion + "," + this.tamanio+","+this.tipo ;
     }
 }  
   class metodoTXT {
@@ -94,7 +95,7 @@ class Fruta{
         }
     }
 
-         void leer() throws IOException {
+      void leer() throws IOException {
         if (!arch.exists()) {
             arch.createNewFile();
         }
@@ -102,7 +103,8 @@ class Fruta{
         String cad;
         while ((cad = br.readLine()) != null) {
             String cad2[] = cad.split(",");
-            this.lista.add(new Fruta(cad2[0].trim(), cad2[1].trim(), Long.parseLong(cad2[2]), Long.parseLong(cad2[3]), cad2[4].trim(),cad2[5].trim(),cad2[6].trim()));
+            this.lista.add(new Fruta(cad2[0].trim(), cad2[1].trim(), cad2[2].trim(), cad2[3].trim(),cad2[4].trim(),cad2[5].trim()));
+           // this.lista.add(new Fruta((cad2[0]).trim(),cad2[1].trim(),cad2[2].trim(),cad2[3].trim(),cad2[4].trim(),cad2[5].trim()));
         }
     }
 
@@ -149,12 +151,14 @@ class metodo{
         }
     }
       
-      void mostrar(){
+      String  mostrar(){
+          String acu="";
         nodo temp=origen;
         while(temp!=null){
-            System.out.print(temp.dato.datos());
+             acu="-"+temp.dato.datos();
             temp=temp.sgte;
         }
+        return acu;
     }
 }
      
@@ -206,49 +210,20 @@ public class Parcial_03 extends javax.swing.JFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        txt_nombre = new javax.swing.JTextField();
-        txt_color = new javax.swing.JTextField();
-        txt_peso = new javax.swing.JTextField();
-        txt_madur = new javax.swing.JTextField();
-        txt_tamanio = new javax.swing.JTextField();
         txt_lista_simple = new javax.swing.JRadioButton();
         txt_lista_doble = new javax.swing.JRadioButton();
         jLabel7 = new javax.swing.JLabel();
         jToggleButton1 = new javax.swing.JToggleButton();
-        txt_guardar = new javax.swing.JToggleButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        txt_mostrar = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel1.setFont(new java.awt.Font("Georgia", 3, 18)); // NOI18N
         jLabel1.setText("        ALMACEN     DE       FRUTAS ");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel2.setText("Nombre :");
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel3.setText("Color : ");
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel4.setText("Peso :");
-
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel5.setText("Maduracion  :  ");
-
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel6.setText("Tamaño  : ");
-
-        txt_color.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_colorActionPerformed(evt);
-            }
-        });
-
+        txt_lista_simple.setFont(new java.awt.Font("Georgia", 3, 16)); // NOI18N
         txt_lista_simple.setText("Lista Simple");
         txt_lista_simple.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -256,6 +231,7 @@ public class Parcial_03 extends javax.swing.JFrame {
             }
         });
 
+        txt_lista_doble.setFont(new java.awt.Font("Georgia", 3, 16)); // NOI18N
         txt_lista_doble.setText("Lista Doble");
         txt_lista_doble.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -263,20 +239,14 @@ public class Parcial_03 extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Georgia", 3, 16)); // NOI18N
         jLabel7.setText("Tipo");
 
+        jToggleButton1.setFont(new java.awt.Font("Georgia", 3, 16)); // NOI18N
         jToggleButton1.setText("Realizar");
         jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton1ActionPerformed(evt);
-            }
-        });
-
-        txt_guardar.setText("GUARDAR");
-        txt_guardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_guardarActionPerformed(evt);
             }
         });
 
@@ -298,95 +268,58 @@ public class Parcial_03 extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txt_peso, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
-                    .addComponent(txt_madur)
-                    .addComponent(txt_tamanio)
-                    .addComponent(txt_color)
-                    .addComponent(txt_nombre))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(72, 72, 72))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(txt_lista_simple, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txt_lista_doble, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(39, 39, 39))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addComponent(txt_guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(143, 143, 143)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 660, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(23, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 660, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(143, 143, 143)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txt_mostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 441, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txt_lista_doble, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(13, 13, 13)
+                                            .addComponent(txt_lista_simple, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(27, 27, 27))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(112, 112, 112)))))
+                .addGap(23, 23, 23))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(txt_nombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
                         .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txt_lista_simple, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(txt_peso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_lista_doble))
                         .addGap(23, 23, 23)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(txt_madur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jToggleButton1))
+                        .addComponent(txt_lista_doble)
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(txt_tamanio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(txt_color, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(2, 2, 2)
-                        .addComponent(txt_guardar)))
-                .addGap(18, 18, 18)
+                        .addComponent(jToggleButton1))
+                    .addComponent(txt_mostrar))
+                .addGap(58, 58, 58)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(128, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txt_colorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_colorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_colorActionPerformed
 
     private void txt_lista_simpleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_lista_simpleActionPerformed
         // TODO add your handling code here:
@@ -395,20 +328,30 @@ public class Parcial_03 extends javax.swing.JFrame {
     private void txt_lista_dobleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_lista_dobleActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_lista_dobleActionPerformed
-
+  static int aletorioEntero(int min, int max) {
+        Random rd = new Random();
+        int r = rd.nextInt((max - min) + 1) + min;
+        return r;
+    }
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-      String nombre;
-      String color;
-      Long peso;
-      String maduracion;
-      String  tamanio;
+                  this.txt_mostrar.setText("");
+      String listaNombre[] = {"Limon", " Mandarina", "Naranja ","Durazno", "Melon", "Sandia","Aguacate","Caranbola","Coco"
+      ,"Papaya","Platano"," Piña","Manzna","Uva","Pera"};
+       String listTamamio[]={"Pequeño","Grande"};
+       String listMaduracion[]={"Maduro","Verde"};
+       String listColor[]={"Amarrillo","Rojo","Morado","VerdeC","Naranjado","Blanco"};
+      String nombre=listaNombre[aletorioEntero(0, 14)];
+      String color=listColor[aletorioEntero(0, 5)];
+      String peso=String.valueOf(aletorioEntero(1, 20));
+      String maduracion=listMaduracion[aletorioEntero(0, 1)];
+      String  tamanio=listTamamio[aletorioEntero(0, 1)];
       String tipo;
       
-       nombre=this.txt_nombre.getText().trim();
-       color=this.txt_color.getText().trim();
-       peso=Long.valueOf(this.txt_peso.getText().trim());
-       maduracion=this.txt_madur.getText().trim();
-       tamanio=this.txt_tamanio.getText().trim();
+       //nombre=this.txt_nombre.getText().trim();
+      // color=this.txt_color.getText().trim();
+       //peso=this.txt_peso.getText().trim();
+       //maduracion=this.txt_madur.getText().trim();
+       //tamanio=this.txt_tamanio.getText().trim();
       metodo m=new metodo();
       
     // String n1 =Integer.parseInt(n);
@@ -416,17 +359,18 @@ public class Parcial_03 extends javax.swing.JFrame {
      
         if(txt_lista_simple.isSelected()){
             
-         m.ingresarS(new Fruta(nombre, color, 0, 0, maduracion, tamanio, "Simple"));
-             lista.add(new Fruta(nombre, color, 0, 0, maduracion, tamanio, "Simple"));
+         m.ingresarS(new Fruta(nombre, color, peso, maduracion, tamanio, "Simple"));
+          lista.add(new Fruta(nombre,color,peso,maduracion,tamanio,"simple"));
          
         }else if(txt_lista_doble.isSelected()){
               
-             m.ingresarD(new Fruta(nombre, color, 0, 0, maduracion, tamanio, "Doble"));
-             lista.add(new Fruta(nombre, color, 0, 0, maduracion, tamanio, "Doble"));
+            m.ingresarD(new Fruta(nombre, color, peso, maduracion, tamanio, "Doble"));
+             lista.add(new Fruta(nombre,color,peso,maduracion,tamanio,"Doble"));
         }else{
                 JOptionPane.showMessageDialog(null, "No se selecciono");
                 }
-     
+         // this.resultado_suma1.setText(m.mostrar(vec));
+          this.txt_mostrar.setText(m.mostrar());
           mtxt = new metodoTXT(lista);
         try {
             mtxt.escribir();
@@ -435,10 +379,6 @@ public class Parcial_03 extends javax.swing.JFrame {
          }
            llenarTabla();
     }//GEN-LAST:event_jToggleButton1ActionPerformed
-
-    private void txt_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_guardarActionPerformed
-        // TODO add your handling code
-    }//GEN-LAST:event_txt_guardarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -482,22 +422,12 @@ public class Parcial_03 extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JToggleButton jToggleButton1;
-    private javax.swing.JTextField txt_color;
-    private javax.swing.JToggleButton txt_guardar;
     private javax.swing.JRadioButton txt_lista_doble;
     private javax.swing.JRadioButton txt_lista_simple;
-    private javax.swing.JTextField txt_madur;
-    private javax.swing.JTextField txt_nombre;
-    private javax.swing.JTextField txt_peso;
-    private javax.swing.JTextField txt_tamanio;
+    private javax.swing.JTextField txt_mostrar;
     // End of variables declaration//GEN-END:variables
 }

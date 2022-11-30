@@ -157,6 +157,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="resultado_suma1">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="resultado_suma1ActionPerformed"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
       <AuxValues>

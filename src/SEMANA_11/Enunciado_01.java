@@ -225,6 +225,12 @@ public class Enunciado_01 extends javax.swing.JFrame {
         result_iterativo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         result_iterativo.setText("Iterativo");
 
+        resultado_suma1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resultado_suma1ActionPerformed(evt);
+            }
+        });
+
         tabla_datos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
@@ -359,6 +365,10 @@ public class Enunciado_01 extends javax.swing.JFrame {
            llenarTabla();
        
     }//GEN-LAST:event_realizar_opActionPerformed
+
+    private void resultado_suma1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resultado_suma1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_resultado_suma1ActionPerformed
 
     /**
      * @param args the command line arguments
